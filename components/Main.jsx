@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { FlatList, View, ActivityIndicator, Image } from "react-native";
-import { getCharacters } from "../lib/metacritic.js";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { FlatList, ActivityIndicator } from "react-native";
+import { getCharacters } from "../lib/rickAndMorty.js";
 import { AnimatedCard } from "./Card.jsx";
+import { Screen } from "./Screen.jsx";
 
 export function Main() {
   const [game, setGame] = useState([]);
-  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     getCharacters().then((game) => {
@@ -15,18 +14,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <Image
-        source={require("../assets/logo.png")}
-        style={{
-          width: 260,
-          height: 100,
-          marginBottom: 10,
-          marginTop: 20,
-          resizeMode: "cover",
-          alignSelf: "center",
-        }}
-      />
+    <Screen>
       {game.length === 0 ? (
         <ActivityIndicator color={"#fff"} size={"large"} />
       ) : (
@@ -36,6 +24,6 @@ export function Main() {
           renderItem={({ item, id }) => <AnimatedCard game={item} id={id} />}
         ></FlatList>
       )}
-    </View>
+    </Screen>
   );
 }
