@@ -1,20 +1,33 @@
+import { Link } from "expo-router";
 import { useEffect, useRef } from "react";
-import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Animated,
+  Pressable,
+} from "react-native";
 
 export const Card = ({ game }) => {
   return (
-    <View key={game.id} style={styles.card}>
-      <Image source={{ uri: game.image }} style={styles.image} />
-      <Text style={styles.title}>{game.name}</Text>
-      <Text style={styles.desc}>Location: {game.location.name}</Text>
-      <Text style={styles.desc}>Origin: {game.origin.name}</Text>
-      <Text style={styles.desc}>Gender: {game.gender}</Text>
-      <Text style={styles.desc}>Type: {game.type}</Text>
-      <Text style={styles.desc}>Specie: {game.species}</Text>
-      <Text style={styles.desc}>Status: {game.status}</Text>
-      <Text style={styles.desc}>Created: {game.created}</Text>
-      <Text style={styles.desc}>Episode: {game.episode.length}</Text>
-    </View>
+    <Link href={`/${game.id}`} asChild>
+      <Pressable>
+        <View key={game.id} style={styles.card}>
+          <Image source={{ uri: game.image }} style={styles.image} />
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.title}>{game.name}</Text>
+            <Text style={styles.desc}>
+              Location: {game.location.name.slice(0, 16)} ...
+            </Text>
+            <Text style={styles.desc}>
+              Origin: {game.origin.name.slice(0, 16)} ...
+            </Text>
+            <Text style={styles.desc}>Gender: {game.gender}</Text>
+          </View>
+        </View>
+      </Pressable>
+    </Link>
   );
 };
 
@@ -40,23 +53,36 @@ export function AnimatedCard({ game, id }) {
 const styles = StyleSheet.create({
   card: {
     marginBottom: 42,
+    backgroundColor: "#4f4f4f",
+    borderRadius: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 340,
   },
   image: {
-    width: 310,
-    height: 247,
+    width: 105,
+    height: 150,
     borderRadius: 10,
+    borderColor: "#fff",
+    borderWidth: 1,
+    resizeMode: "cover",
   },
   title: {
     color: "#fff",
-    fontSize: 30,
+    fontSize: 18,
     fontWeight: "bold",
-    marginTop: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingHorizontal: 10,
+    marginLeft: 5,
   },
   desc: {
     color: "#fff",
-    fontSize: 17,
-    marginTop: 10,
+    fontSize: 14,
+    marginTop: 6,
+    marginBottom: 6,
     lineHeight: 20,
-    fontWeight: "bold",
+    paddingHorizontal: 10,
+    marginLeft: 5,
   },
 });
