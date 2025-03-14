@@ -17,12 +17,8 @@ export const Card = ({ game }) => {
           <Image source={{ uri: game.image }} style={styles.image} />
           <View style={{ marginBottom: 10 }}>
             <Text style={styles.title}>{game.name}</Text>
-            <Text style={styles.desc}>
-              Location: {game.location.name.slice(0, 16)} ...
-            </Text>
-            <Text style={styles.desc}>
-              Origin: {game.origin.name.slice(0, 16)} ...
-            </Text>
+            <Text style={styles.desc}>Status: {game.status}</Text>
+            <Text style={styles.desc}>Species: {game.species} </Text>
             <Text style={styles.desc}>Gender: {game.gender}</Text>
           </View>
         </View>
@@ -69,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "bold",
     marginTop: 5,
     marginBottom: 5,

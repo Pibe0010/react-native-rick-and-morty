@@ -46,6 +46,7 @@ export default function Datail() {
                   color: "#fff",
                   fontWeight: "bold",
                   marginBottom: 10,
+                  textAlign: "center",
                 }}
               >
                 {characterInfo.name}
