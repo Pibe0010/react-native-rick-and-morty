@@ -13,3 +13,7 @@ export const HomeIcon = (props) => (
 export const Logo = (props) => (
   <Image source={require("../assets/logo.png")} {...props} />
 );
+
+export const InfoIcon = (props) => (
+  <FontAwesome5 name="info" size={30} color="white" {...props} />
+);
